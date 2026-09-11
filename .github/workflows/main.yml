@@ -31,6 +31,9 @@ jobs:
           npm install -D typescript
           npx cap add android
 
+      - name: Build web assets
+        run: npm run build
+
       - name: Sync Capacitor
         run: npx cap sync android
 
