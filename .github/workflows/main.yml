@@ -19,7 +19,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
-          distribution: temurin
+          distribution: 'temurin'
           java-version: '17'
 
       - name: Setup Android SDK
@@ -27,19 +27,18 @@ jobs:
 
       - name: Install dependencies & sync Capacitor
         run: |
-       npm install
-       npm install -D typescript
-       npx cap sync android
+          npm install
+          npm install -D typescript
+          npx cap sync android
 
       - name: Grant gradlew permission
         run: chmod +x android/gradlew
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug
-        working-directory: android
+        run: cd android && ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
-          path: android/app/build/outputs/apk/debug/*.apk
+          name: app-debug.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
