@@ -25,15 +25,20 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install dependencies & add Android platform
+      - name: Install dependencies
         run: |
           npm install --legacy-peer-deps
           npm install -D typescript
-          npx cap add android
 
-      - name: Build web assets
-        run: npm run build
+      # 直接从 www 复制网页文件到 dist
+      - name: Copy web assets
+        run: mkdir -p dist && cp -r www/* dist/
 
+      # 生成安卓工程（如果已存在会跳过）
+      - name: Add Android platform
+        run: npx cap add android
+
+      # 把 dist 同步进安卓工程
       - name: Sync Capacitor
         run: npx cap sync android
 
