@@ -1,0 +1,16 @@
+{
+  "name": "snake-game-android",
+  "version": "1.0.0",
+  "description": "贪吃蛇游戏 - 安卓版（Capacitor WebView）",
+  "private": true,
+  "scripts": {
+    "build:android": "cap sync android && cap open android",
+    "build:apk": "cd android && ./gradlew assembleDebug",
+    "build:release": "cd android && ./gradlew assembleRelease"
+  },
+  "dependencies": {
+    "@capacitor/core": "^5.7.0",
+    "@capacitor/cli": "^5.7.0",
+    "@capacitor/android": "^5.7.0"
+  }
+}
